@@ -1,4 +1,4 @@
-# Trial fo [React-18 beta](https://github.com/reactwg/react-18/discussions/112) [[Demo](https://yukiyokotani.github.io/react-18/)]
+# Trial for [React-18 beta](https://github.com/reactwg/react-18/discussions/112) [[Demo](https://yukiyokotani.github.io/react-18/)]
 This application is a trial for React 18 beta.  
 
 This project is built by [Vite](https://vitejs.dev/).
