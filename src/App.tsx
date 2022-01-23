@@ -1,48 +1,51 @@
-import { useState } from 'react';
-import logo from './logo.svg';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import { Suspense, useState } from 'react';
 import './App.scss';
+import Sleep from './components/Sleep';
 
-function App() {
-  const [count, setCount] = useState(0);
+const App: React.FC = () => {
+  const [sleepIsShown, setSleepIsShown] = useState(false);
+  const [wakeUpDate, setWakeUpDate] = useState<Date | null>(null);
+  // const [startTransition] = useTransition({ timeoutMs: 3000 });
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button
-            type="button"
-            onClick={() => setCount((prevCount) => prevCount + 1)}
-          >
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
+    <div>
+      <h1>React18 App</h1>
+      <h2>Suspense</h2>
+      <p>Fall asleep in an instant and take three seconds to wake up. 🛌</p>
+      <p>
+        {wakeUpDate
+          ? `Wake up at ${wakeUpDate?.toLocaleTimeString()} 🤬`
+          : 'Now sleeping...😴'}
+      </p>
+      <Suspense fallback={<p>Waking up...🥱</p>}>
+        {sleepIsShown ? <Sleep /> : null}
+      </Suspense>
+      <div>
+        <button
+          type="button"
+          disabled={sleepIsShown}
+          onClick={() => {
+            setWakeUpDate(new Date());
+            setSleepIsShown(true);
+          }}
+        >
+          Wake Up
+        </button>
+        <button
+          type="button"
+          disabled={!sleepIsShown}
+          onClick={() => {
+            setWakeUpDate(null);
+            setSleepIsShown(false);
+          }}
+        >
+          Put to Sleep
+        </button>
+      </div>
     </div>
   );
-}
+};
 
 export default App;
