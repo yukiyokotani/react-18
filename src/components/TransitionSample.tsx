@@ -30,7 +30,7 @@ const TransitionSample: React.VFC = () => {
     setStartDate(new Date());
     startTransition(() => {
       setIsSRCShown(() => {
-        sleep(1500);
+        sleep(3000);
         return true;
       });
     });
@@ -39,7 +39,7 @@ const TransitionSample: React.VFC = () => {
   const handleClickWithoutTransition = useCallback(() => {
     setStartDate(new Date());
     setIsSRCShown(() => {
-      sleep(1500);
+      sleep(3000);
       return true;
     });
   }, [setStartDate, setIsSRCShown]);
@@ -52,10 +52,8 @@ const TransitionSample: React.VFC = () => {
   return (
     <div>
       <h2>Transition</h2>
-      <p>
-        Simultaneous update of two States with different update processing
-        times.
-      </p>
+      <p>Comparison of slow rendering with and without transition</p>
+      <p>After pressing Render, it takes 3 seconds to render.</p>
       {isPending ? (
         <div>
           <p>Rendering...</p>
@@ -63,24 +61,26 @@ const TransitionSample: React.VFC = () => {
       ) : (
         <SlowRenderComponent isShown={isSRCShown} />
       )}
-      <div>
+      <div className="button-container">
         <button
           type="button"
           disabled={startDate !== null}
           onClick={handleClickWithTransition}
         >
-          Update w/ Transition
+          Render w/ Transition
         </button>
         <button
           disabled={startDate !== null}
           type="button"
           onClick={handleClickWithoutTransition}
         >
-          Update w/o Transition
+          Render w/o Transition
         </button>
-        {startDate ? (
-          <span>{`Clicked at ${startDate?.toLocaleTimeString()}`}</span>
-        ) : null}
+        <span>
+          {startDate ? (
+            <span>{`Clicked at ${startDate?.toLocaleTimeString()}`}</span>
+          ) : null}
+        </span>
       </div>
       <div>
         <button type="button" disabled={startDate === null} onClick={reset}>

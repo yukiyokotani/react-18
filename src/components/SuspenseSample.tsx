@@ -14,10 +14,10 @@ const SuspenseSample: React.VFC = () => {
           ? `Wake up at ${wakeUpDate?.toLocaleTimeString()} 🤬`
           : 'Now sleeping...😴'}
       </p>
-      <Suspense fallback={<p>Waking up...🥱</p>}>
+      <Suspense fallback={<p>Awaking...🥱</p>}>
         {sleepIsShown ? <Sleep /> : null}
       </Suspense>
-      <div>
+      <div className="button-container">
         <button
           type="button"
           disabled={sleepIsShown}
