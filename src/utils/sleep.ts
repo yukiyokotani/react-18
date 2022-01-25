@@ -1,6 +1,6 @@
+/* eslint-disable import/prefer-default-export */
 import { useEffect } from 'react';
 
-/* eslint-disable import/prefer-default-export */
 let isSleep = true;
 
 export function useSleep(ms: number): string {

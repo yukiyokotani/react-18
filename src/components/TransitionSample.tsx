@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary */
 import React, { useCallback, useState, useTransition } from 'react';
 
 function sleep(ms: number) {
